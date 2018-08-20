@@ -1,0 +1,91 @@
+
+{{define "views/sysuser.html"}}
+{{template "header"}}
+<h1>用户管理</h1>
+    <!--form action="/lib" method="get">
+        <button type="submit">返回目录</button></form-->
+    <form name="from" method = 'post' enctype="multipart/form-data">
+        <p><input type="text" name="select" >
+            <button onclick="selectAction()" type="submit">
+                查询
+            </button>
+        </p>
+
+        <p>用户名：<input type="text" name="user_code">
+            密码：<input type="text" name="user_pwd">
+            姓名：<input type="text" name="user_name">
+            <button onclick="adduser()" type="button">
+                添加
+            </button>
+        </p>
+            <!--input type="text" class="form-control"-->
+
+
+
+    </form>
+
+    <br />
+    <form class="info" action="/sysuserdb" method="post">
+        <ul>
+            <a id="btn0"></a>
+            <input id="pageSize" type="text" size="1" maxlength="2" value="getDefaultValue()"/><a> 条 </a> <a href="#" id="pageSizeSet">设置</a>&nbsp;
+            <a id="sjzl"></a>&nbsp;
+            <a  href="#" id="btn1">首页</a>
+            <a  href="#" id="btn2">上一页</a>
+            <a  href="#" id="btn3">下一页</a>
+            <a  href="#" id="btn4">尾页</a>&nbsp;
+            <a>转到&nbsp;</a>
+            <input id="changePage" type="text" size="1" maxlength="4"/>
+            <a>页&nbsp;</a>
+            <a  href="#" id="btn5">跳转</a>
+        </ul>
+            <!--table id="mytable" align="center"-->
+
+            <table id="mytable" border="1" width="1000">
+                <tr>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>姓名</th>
+                    <th>操作</th>
+
+                </tr>
+                {{with .data}}
+                {{range .}}
+                <tr>
+                    <th>{{.Id}}</th>
+                    <th>{{.User_code}}</th>
+                    <th>{{.User_name}}</th>
+                    <th>
+                        <form action="/sysuserdb" method="post">
+                        <button type="submit" name="shanchu" value="">删除</button>
+                        <button type="submit" name="xiugai" value="">修改用户名</button>
+                        <button onclick="cuserdb()" type="submit" name="cuserdb" value={{.Id}}>修改数据库权限</button>
+                    </form> </th>
+                </tr>
+                {{end}}
+                {{end}}
+
+    </form>
+</div>
+<script type="text/javascript">
+    function selectAction(){
+        //alert("被点击");
+        document.from.action="/selectsysuser";//提交的url
+        document.from.submit();
+    }
+    function adduser(){
+        document.from.action="/addsysuser/";//提交的url
+        document.from.submit();
+    }
+    function cuserdb(){
+        document.from.action="/sysuserdb/";//提交的url
+        document.from.button();
+    }
+
+</script>
+
+{{template "js"}}
+{{end}}
+
+
+

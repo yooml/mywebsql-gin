@@ -1,0 +1,211 @@
+
+{{define "header"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="/static/js/jquery-ui-1.10.4/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--link href="static/bootstrap-4.1.0-dist/css/bootstrap.min.css" rel="stylesheet"-->
+    <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/lib">概览</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!--li class="active">
+                            <a href="/QueryLog/">日志</a>
+                        </li-->
+                        <li>
+                            <a href="/DbConfig/">数据库管理</a>
+                        </li>
+                        <li>
+                            <a href="/sysuser/">用户操作</a>
+                        </li>
+                        <!--li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">用户操作<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/SysUser/">用户管理</a>
+                                </li>
+                                <li>
+                                    <a href="/SysUserDb/">用户映射数据库</a>
+                                </li>
+                            </ul>
+                        </li-->
+                    </ul>
+
+                    <!--form class="navbar-form navbar-left" role="search">
+                       <div class="form-group">
+                          <input type="text" class="form-control" />
+                       </div> <button type="submit" class="btn btn-default">Submit</button>
+                    </form-->
+                    <!--ul class="nav navbar-nav navbar-right"-->
+                    <ul class="nav navbar-nav">
+                        <!--li>
+                            <a href="#">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">组操作<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/SysGroup/">组管理</a>
+                                </li>
+                                <li>
+                                    <a href="/SysGroupDb/">组映射数据库</a>
+                                </li>
+                            </ul>
+                        <li-->
+                        <li class="dropdown">
+                            <a href="/logout">退出</a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+
+{{end}}
+    {{template "navbar"}}
+
+
+
+
+{{define "js"}}
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+        $( "input[type=button],  button" )
+            .button();
+
+        var pageSize = 15;    //每页显示的记录条数
+        var curPage=0;        //当前页
+        var lastPage;        //最后页
+        var direct=0;        //方向
+        var len;            //总行数
+        var page;            //总页数
+        var begin;
+        var end;
+
+
+        $(document).ready(function display(){
+            len =$("#mytable tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+            page=len % pageSize==0 ? len/pageSize : Math.floor(len/pageSize)+1;//根据记录条数，计算页数
+            // alert("page==="+page);
+            curPage=1;    // 设置当前为第一页
+            displayPage(1);//显示第一页
+
+            document.getElementById("btn0").innerHTML="当前 " + curPage + "/" + page + " 页    每页 ";    // 显示当前多少页
+            document.getElementById("sjzl").innerHTML="数据总量 " + len + "";        // 显示数据量
+            document.getElementById("pageSize").value = pageSize;
+
+
+
+            $("#btn1").click(function firstPage(){    // 首页
+                curPage=1;
+                direct = 0;
+                displayPage();
+            });
+            $("#btn2").click(function frontPage(){    // 上一页
+                direct=-1;
+                displayPage();
+            });
+            $("#btn3").click(function nextPage(){    // 下一页
+                direct=1;
+                displayPage();
+            });
+            $("#btn4").click(function lastPage(){    // 尾页
+                curPage=page;
+                direct = 0;
+                displayPage();
+            });
+            $("#btn5").click(function changePage(){    // 转页
+                curPage=document.getElementById("changePage").value * 1;
+                if (!/^[1-9]\d*$/.test(curPage)) {
+                    alert("请输入正整数");
+                    return ;
+                }
+                if (curPage > page) {
+                    alert("超出数据页面");
+                    return ;
+                }
+                direct = 0;
+                displayPage();
+            });
+
+
+            $("#pageSizeSet").click(function setPageSize(){    // 设置每页显示多少条记录
+                pageSize = document.getElementById("pageSize").value;    //每页显示的记录条数
+                if (!/^[1-9]\d*$/.test(pageSize)) {
+                    alert("请输入正整数");
+                    return ;
+                }
+                len =$("#mytable tr").length - 1;
+                page=len % pageSize==0 ? len/pageSize : Math.floor(len/pageSize)+1;//根据记录条数，计算页数
+                curPage=1;        //当前页
+                direct=0;        //方向
+                displayPage();
+            });
+        });
+
+        function displayPage(){
+            if(curPage <=1 && direct==-1){
+                direct=0;
+                alert("已经是第一页了");
+                return;
+            } else if (curPage >= page && direct==1) {
+                direct=0;
+                alert("已经是最后一页了");
+                return ;
+            }
+
+            lastPage = curPage;
+
+            // 修复当len=1时，curPage计算得0的bug
+            if (len > pageSize) {
+                curPage = ((curPage + direct + len) % len);
+            } else {
+                curPage = 1;
+            }
+
+
+            document.getElementById("btn0").innerHTML="当前 " + curPage + "/" + page + " 页    每页 ";        // 显示当前多少页
+
+            begin=(curPage-1)*pageSize + 1;// 起始记录号
+            end = begin + 1*pageSize - 1;    // 末尾记录号
+
+
+            if(end > len ) end=len;
+            $("#mytable tr").hide();    // 首先，设置这行为隐藏
+            $("#mytable tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                if((i>=begin && i<=end) || i==0 )//显示begin<=x<=end的记录
+                    $(this).show();
+            });
+
+        }
+    </script>
+</body>
+</html>
+{{end}}

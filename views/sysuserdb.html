@@ -1,0 +1,102 @@
+{{define "views/sysuserdb.html"}}
+{{template "header"}}
+
+{{with .user_has_db}}
+{{range .}}
+{{.Db_id}}
+{{end}}
+{{end}}
+<form id="form1" name="from" method = 'post' enctype="multipart/form-data">
+<p>数据库名：<input type="text" name="dbname">
+    主机名：<input type="text" name="dbhost">
+    <button onclick="selectdbtest()" type="button">
+        查询
+    </button>
+</p>
+</form>
+
+<table id="mytable" border="1">
+    <thead>
+    <tr>
+        <th>所有数据库</th>
+        <th>所属host</th>
+        <th>从此用户中删除</th>
+        <th>添加到此用户</th>
+    </tr>
+    </thead>
+
+    {{with .user_has_db_config}}
+    {{range .}}
+
+    <tbody id="thedata">
+    <tr>
+
+<th>{{.Dbname}}</th>
+<th>{{.Dbhost}}</th>
+
+<!--th><form action="/change/SysUserDb/" method="get">
+    <button type="submit" name="shanchu" value="{{.Id}}" class="btn btn-warning">删除</button>
+
+</form> </th>
+
+<th><form action="/change/SysUserDb/" method="get">
+    <button type="submit" disabled="disabled" name="tianjia" value="" class="btn btn-success">添加</button>
+
+</form> </th>
+else
+<th><form action="/change/SysUserDb/" method="get">
+    <button type="submit" disabled="disabled" name="shanchu" value="" class="btn btn-warning">删除</button>
+
+</form> </th>
+
+<th><form action="/change/SysUserDb/" method="get">
+    <button type="submit" name="tianjia" value="" class="btn btn-success">添加</button>
+
+</form> </th-->
+endif
+</tr>
+    </tbody>
+    {{end}}
+    {{end}}
+
+</table>
+</div>
+<script type="text/javascript">
+    function selectdb(){
+        //alert("被点击");
+        document.from.action="/selectdb";//提交的url
+        document.from.submit();
+    }
+    function selectdbtest() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            //contentType:"application/json",
+            //contentType:"application/x-www-form-urlencoded",
+            url: "/selectdb" ,//url
+            data: $('#form1').serialize(),
+
+            success:function (data) {
+                $.each(data, function() {
+                    var thedata = $("#thedata");
+                    var trData = "<tr><th>"+ this.dbname +"</th><th>"+ this.dbhost +"</th></tr>";
+//alert(trData);
+                    thedata.append(trData);
+                    //alert(this.dbhost);
+                })
+                //alert(data[0].dbname);
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+        $('from').submit(function() {
+            alert($(this).serialize());
+            return false;
+        });
+    }
+</script>
+
+{{template "js"}}
+{{end}}
