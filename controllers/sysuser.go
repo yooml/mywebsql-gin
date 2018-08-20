@@ -14,7 +14,7 @@ import (
 
 //var engine *xorm.Engine
 //var err error
-//engine,err = xorm.NewEngine("mysql", "root:GTRawfQKiGmVIoFXSlcgdnlvZOXSO8@/test")
+//engine,err = xorm.NewEngine("mysql", "root:passwd@/test")
 
 type User struct {
 	Id int
@@ -53,7 +53,7 @@ var engine *xorm.Engine
 func InitDB() (*xorm.Engine,error){
 
 	var err error
-	db,err := xorm.NewEngine("mysql", "")
+	db,err := xorm.NewEngine("mysql", "root:passwd@/test")
 	engine=db
 	return engine,err
 }
