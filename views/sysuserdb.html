@@ -1,9 +1,9 @@
 {{define "views/sysuserdb.html"}}
 {{template "header"}}
 
-{{with .user_has_db}}
+{{with .user_has_db_config}}
 {{range .}}
-{{.Db_id}}
+{{.Dbname}}
 {{end}}
 {{end}}
 <form id="form1" name="from" method = 'post' enctype="multipart/form-data">
@@ -68,6 +68,8 @@ endif
         document.from.submit();
     }
     function selectdbtest() {
+        //$('#thedata')[0].empty();
+        $('#thedata').empty();
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
@@ -78,6 +80,8 @@ endif
             data: $('#form1').serialize(),
 
             success:function (data) {
+                //$('#thedata').form('clear');
+                $('#thedata').empty();
                 $.each(data, function() {
                     var thedata = $("#thedata");
                     var trData = "<tr><th>"+ this.dbname +"</th><th>"+ this.dbhost +"</th></tr>";
