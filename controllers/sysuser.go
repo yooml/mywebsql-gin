@@ -34,6 +34,7 @@ type Userdb struct {
 	//User_id int
 }
 
+
 type Db_config struct {
 	Id int
 	Dbname string `form:"dbname" json:"dbname" binding:"required"`
@@ -45,6 +46,14 @@ type Db_config struct {
 
 type Change_user struct {
 	change_user_id string
+}
+
+type Userdbsql struct {
+	User_id int `json:"user_id"`
+	Db_id int `json:"db_id"`
+	User_have bool `json:"user_have"`
+	//Db_id int
+	//User_id int
 }
 
 
@@ -192,4 +201,19 @@ func SelectDb(c *gin.Context)  {
 		//"user_has_db_config":select_dbconfig,
 	//})
 	c.JSON(http.StatusOK, select_dbconfig)
+}
+
+func Testsql(c *gin.Context)  {
+	var json Userdbsql
+	if err := c.ShouldBindJSON(&json); err == nil {
+		if json.User_have == true{
+			c.JSON(http.StatusOK, gin.H{"status": "you are logged in","user_id":json.User_id,"db_id":json.Db_id})
+		} else {
+			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+		}
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+
 }

@@ -18,12 +18,12 @@ type MyHTMLRender struct {
 
 func main() {
 	router := gin.Default()
-	//router.LoadHTMLGlob("views/*")
+	router.LoadHTMLGlob("views/*")
 //router.LoadHTMLGlob("views/*.html")
 //html := template.Must(template.ParseFiles("views/mywebsql-base.html","views/sysuser.html"))
 //html := template.Must(template.ParseGlob("views/*"))
 //router.SetHTMLTemplate(html)
-	router.HTMLRender = createMyRender()
+	//router.HTMLRender = createMyRender()
 	db,_ := controllers.InitDB()
 	defer db.Close()
 	router.Static("/static", "./static")
@@ -42,9 +42,26 @@ func main() {
 		c.HTML(http.StatusOK, "views/testvue.html",nil)
 	})
 	router.GET("/test2",func(c *gin.Context) {
-		c.HTML(http.StatusOK, "test3",nil)
+		c.HTML(http.StatusOK, "views/testvue2.html",gin.H{
+			"a":"ll",
+		})
+	})
+	router.GET("/test3",func(c *gin.Context) {
+		c.HTML(http.StatusOK, "views/testvue3.html",nil)
+		})
+	router.GET("/test4",func(c *gin.Context) {
+		/*ll:=`[
+		{ user_id:467, db_id: 1,db_name:"_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
+		{ user_id:467, db_id: 2,db_name:"lease",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
+		{ user_id:467, db_id: 3,db_name:"finance_car",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
+		{ user_id:467, db_id: 4,db_name:"finance",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
+	]`*/
+		c.HTML(http.StatusOK, "views/testvue3.html",gin.H{
+			"dataa":5,
+		})
 	})
 
+	router.POST("/testsql",controllers.Testsql)
 	router.Run(":8080")
 }
 

@@ -114,7 +114,7 @@
                     <button class="ui button left labeled icon" @click="turnPage(-1)">
                         <i class="left arrow icon"></i> Prev
                     </button>
-                    <span>共 {{ .totalPage }} 页，当前第 {{ .currentPage }} 页</span>
+                    <span>共 {{ .totalPage }}<span v-html="totalPage"></span> 页，当前第 {{ .currentPage }}<span v-html="currentPage+1"></span> 页</span>
                     <button class="ui button right labeled icon" @click="turnPage(1)">
                         <i class="right arrow icon"></i> Next
                     </button>
