@@ -17,10 +17,10 @@ import (
 //engine,err = xorm.NewEngine("mysql", "root:passwd@/test")
 
 type User struct {
-	Id int
-	User_code string
-	User_name string
-	User_pwd string
+	Id int `json:"user_id"`
+	User_code string `json:"user_code"`
+	User_name string `json:"user_name"`
+	User_pwd string `json:"user_pwd"`
 	//Db_id int
 	//User_id int
 }
@@ -216,4 +216,11 @@ func Testsql(c *gin.Context)  {
 	}
 
 
+}
+
+func Vuesysuser(c *gin.Context)  {
+	var sysuser []User
+	sql_sel_all_sysuser:="select * from sys_user"
+	engine.Sql(sql_sel_all_sysuser).Find(&sysuser)
+	c.JSON(http.StatusOK, sysuser)
 }

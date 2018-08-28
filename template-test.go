@@ -37,6 +37,7 @@ func main() {
 	router.GET("/sysuser",controllers.Sysuser)
 	router.POST("/sysuserdb",controllers.Sysuserdb)
 	router.GET("/sysuserdb",controllers.Sysuserdb)
+	router.POST("/vuesysuser",controllers.Vuesysuser)
 
 	router.GET("/test",func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/testvue.html",nil)
@@ -47,7 +48,7 @@ func main() {
 		})
 	})
 	router.GET("/test3",func(c *gin.Context) {
-		c.HTML(http.StatusOK, "views/testvue3.html",nil)
+		c.HTML(http.StatusOK, "views/vuesysuser.html",nil)
 		})
 	router.GET("/test4",func(c *gin.Context) {
 		/*ll:=`[
@@ -56,9 +57,7 @@ func main() {
 		{ user_id:467, db_id: 3,db_name:"finance_car",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
 		{ user_id:467, db_id: 4,db_name:"finance",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
 	]`*/
-		c.HTML(http.StatusOK, "views/testvue3.html",gin.H{
-			"dataa":5,
-		})
+		c.HTML(http.StatusOK, "views/testvue3.html",nil)
 	})
 
 	router.POST("/testsql",controllers.Testsql)
