@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div id="example">
+<!--div id="example">
     <p>Original message: "{{ .a }}"<span v-html="message"></span></p>
     <p>Computed reversed message: "{{ .reversedMessage }}"<span v-html="reversedMessage"></span></p>
 </div>
@@ -42,62 +42,27 @@
 
 <div id="components-demo">
     <button-counter></button-counter>
-</div>
+</div-->
 
+<div id="App">
+    <div ref="menuItem" @click="bb">{{.a}}</div>
+
+</div>
 </body>
 <script>
+    //console.log(this.$refs.menuItem.innerText);
+    var par=new Vue({
+        el: '#App',
+        methods: {
+            bb() {
+                //var getMenuText = this.$refs.rr.innerText;
+                console.log(this.$refs.menuItem.innerText);//aa
+            },
 
-    Vue.component('button-counter', {
-        data: function () {
-            return {
-                count: 0
-            }
-        },
-        template: '<button v-on:click="count++">You clicked me <span v-html="count"></span>{{ .count }} times.</button>'
 
-    })
-    axios.post('/testsql',{
-            user_id : 467,
-            db_id : 1,
-            user_have : true
-    })
-        .then(function(res){
-            console.log(res.data);
-            console.log(res.status);
-            console.log(res.statusText);
-            console.log(res.headers);
-            console.log(res.config);
-        })
-
-    new Vue({ el: '#components-demo' })
-
-    new Vue({
-        el: '#example-5',
-        data: {
-            selected: ''
         }
     })
-    var example1 = new Vue({
-        el: '#example-1',
-        data: {
-            items: [
-                { message: 'Foo' },
-                { message: 'Bar' }
-            ]
-        }
-    })
-var vm = new Vue({
-el: '#example',
-data: {
-message: 'Hello'
-},
-computed: {
-// 计算属性的 getter
-reversedMessage: function () {
-// `this` 指向 vm 实例
-return this.message.split('').reverse().join('')
-}
-}
-})
+    console.log(par.$refs.menuItem.innerText)
+
     </script>
 {{end}}

@@ -26,14 +26,25 @@ type User struct {
 }
 
 type Userdb struct {
-	User_id int
-	Db_id int
-	End_datetime time.Time
+	User_id int `json:"user_id"`
+	Db_id int `json:"db_id"`
+	End_datetime time.Time `json:"end_datetime"`
 	Credite_datetime time.Time
 	//Db_id int
 	//User_id int
 }
 
+
+type Userdball struct {
+	User_id int `json:"user_id"`
+	Db_id int `json:"db_id"`
+	End_datetime time.Time `json:"end_datetime"`
+	Credite_datetime time.Time
+	Db_name string `json:"db_name"`
+	Db_host string `json:"db_host"`
+	User_have bool `json:"user_have"`
+	//User_id int
+}
 
 type Db_config struct {
 	Id int
@@ -223,4 +234,58 @@ func Vuesysuser(c *gin.Context)  {
 	sql_sel_all_sysuser:="select * from sys_user"
 	engine.Sql(sql_sel_all_sysuser).Find(&sysuser)
 	c.JSON(http.StatusOK, sysuser)
+}
+
+func Vuesysuserdb(c *gin.Context)  {
+	user_id := c.Query("user_id")
+	//println(user_id)
+	c.HTML(http.StatusOK, "views/vuesysuserdb.html",gin.H{
+		"user_id":user_id,
+	})
+}
+
+func Vuesysuserdbjson(c *gin.Context)  {
+	var json Userdbsql
+	c.ShouldBindJSON(&json)
+	println(json.User_id)
+
+	var userdball []Userdball
+	var alluser_dbconfig []Db_config
+
+	sql_sel_all_user:="select * from sys_userdb"
+	engine.Sql(sql_sel_all_user).Find(&userdball)
+	userdballs:=make([]Userdball,0)
+	for _,vuserdball :=range userdball{
+		vuserdball.User_have=false
+		sql_sel_all_db:="select * from db_config where id ="+fmt.Sprint(vuserdball.Db_id)
+		engine.Sql(sql_sel_all_db).Find(&alluser_dbconfig)
+
+		for _,vdb :=range alluser_dbconfig{
+			vuserdball.Db_name=vdb.Dbname
+			vuserdball.Db_host=vdb.Dbhost
+		}
+		//vuserdba, _ := json.Marshal(vuserdb)
+		userdballs=append(userdballs,vuserdball)
+	}
+	println(userdballs[0].Db_id,userdballs[0].Db_name)
+	var userdb []Userdb
+	//var user_dbconfig []Db_config
+
+	sql_sel_user:="select * from sys_userdb where user_id ="+fmt.Sprint(json.User_id)
+	engine.Sql(sql_sel_user).Find(&userdb)
+	for _,vuserdb :=range userdb{
+	for _,alluserdb:=range userdballs{
+		if alluserdb.Db_id==vuserdb.Db_id{
+			println(vuserdb.Db_id)
+			alluserdb.User_have=true
+			}else {
+		continue
+		}
+	}
+	}
+
+
+	//userdb :=[{ user_id:467, db_id: 1,db_name:"finance_car_lease_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },]
+	c.JSON(http.StatusOK, userdballs)
+
 }

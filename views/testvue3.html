@@ -45,6 +45,8 @@
 
 <body>
 <div id="audit">
+    <div class="aa" ref="menuItem" @click="aa($event)">aa</div>
+    <div @click="bb">bb</div>
     <div class="filter">
         <div class="ui input icon">
             <input type="text" v-model="fKey" />
@@ -62,7 +64,7 @@
         <table class="ui compact celled definition table">
             <thead>
             <tr>
-                <th></th>
+                <th>{{.a}}</th>
                 <th>id</th>
                 <th>姓名</th>
                 <th>状态</th>
@@ -145,6 +147,7 @@
         data() {
             return {
                 userdb: userdbStorage.fetch(), // users 数据
+                a:'',
                 //userdb:[],
                 //selectedUsers: [], // 保存选中的 users 数组
                 selectedUser: {}, // 选中 user
@@ -165,7 +168,7 @@
                 .then((res)=>{
                     this.userdb = res.data;
                 })
-            //console.log(this.userdb)
+            console.log(this.a)
 
             axios.post('/vuesysuser')
                 .then(function(res){
@@ -195,7 +198,9 @@
                 return this.paginate(fUserdb)
             }
         },
+
         methods: {
+
 
             queryFilter (prop, key, arr) {
                 // none query string, return arr
@@ -276,8 +281,15 @@
                 }
                 let index = $(target.parentNode).index()
                 this.selectedUser = this.filteredUsers[index]
-            }
-
+            },
+            bb: function() {
+                var getMenuText = this.$refs.menuItem.innerText;
+                console.log(getMenuText);//aa
+            },
+            aa: function(e) {
+                var el = e.target;
+                console.log(el);//<div class="aa">aa</div>
+            },
         }
     })
 
