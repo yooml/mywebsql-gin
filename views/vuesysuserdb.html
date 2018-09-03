@@ -44,6 +44,7 @@
 </head>
 
 <body>
+{{template "header"}}
 <div id="audit">
     <div id="App">
     <div ref="menuItem" @click="bb">{{.user_id}}</div>
@@ -65,11 +66,11 @@
         <table class="ui compact celled definition table">
             <thead>
             <tr>
-                <th></th>
                 <th>id</th>
-                <th>姓名</th>
-                <th>状态</th>
+                <th>数据库名</th>
+                <th>host</th>
                 <th>操作</th>
+
             </tr>
             </thead>
 
@@ -81,9 +82,9 @@
                         <input type="checkbox" :value="user" v-model="selectedUsers"> <label></label>
                     </div>
                 </td-->
-                <td class="collapsing"><span v-html="user.user_id"></span></td>
-                <td><span v-html="user.db_name"></span></td>
-                <td><span v-html="user.db_host"></span></td>
+                <td class="collapsing"><span v-html="user.dbid"></span></td>
+                <td><span v-html="user.dbname"></span></td>
+                <td><span v-html="user.dbhost"></span></td>
                 <td>
                     <button class="ui button red" v-if="user.user_have==false" @click="setuserhave(user,true)">添加</button>
                     <button class="ui button green" v-if="user.user_have==true" @click="setuserhave(user,false)">删除</button>
@@ -92,9 +93,12 @@
             <tfoot class="full-width">
             <tr>
                 <th colspan="4">
+                    <button class="ui button left labeled icon" @click="turnPage(-1)">
+                        <i class="left arrow icon"></i> 上一页
+                    </button>
                     <span>共<span v-html="totalPage"></span> 页，当前第<span v-html="currentPage+1"></span> 页</span>
                     <button class="ui button right labeled icon" @click="turnPage(1)">
-                        <i class="right arrow icon"></i> Next
+                        <i class="right arrow icon"></i> 下一页
                     </button>
                     <div class="jtp">
                         <span>跳转到第 </span>
@@ -192,7 +196,7 @@
         // computed properties
         computed: {
             filteredUsers () {
-                let fUserdb = this.queryFilter('db_name', this.fKey, this.userdb)
+                let fUserdb = this.queryFilter('dbname', this.fKey, this.userdb)
                 //fUsers = this.queryFilter('audit', this.aKey, fUsers)
                 return this.paginate(fUserdb)
             }
@@ -211,7 +215,7 @@
                     if (user[prop].toString().indexOf(key) !== -1) {
                         return true
                     }
-                    else if (user["db_host"].toString().indexOf(key) !== -1){
+                    else if (user["dbhost"].toString().indexOf(key) !== -1){
                         return true
                     }
                 })
@@ -261,7 +265,7 @@
                 //user.user_have = userhave
                 axios.post('/testsql',{
                     user_id : user.user_id,
-                    db_id : user.db_id,
+                    db_id : user.dbid,
                     user_have : user.user_have,
                 })
                     .then(function(res){

@@ -26,6 +26,7 @@ type User struct {
 }
 
 type Userdb struct {
+	Id int `json:"id"`
 	User_id int `json:"user_id"`
 	Db_id int `json:"db_id"`
 	End_datetime time.Time `json:"end_datetime"`
@@ -36,6 +37,7 @@ type Userdb struct {
 
 
 type Userdball struct {
+	Id int `json:"id"`
 	User_id int `json:"user_id"`
 	Db_id int `json:"db_id"`
 	End_datetime time.Time `json:"end_datetime"`
@@ -47,12 +49,14 @@ type Userdball struct {
 }
 
 type Db_config struct {
-	Id int
+	Id int `json:"dbid"`
 	Dbname string `form:"dbname" json:"dbname" binding:"required"`
 	Dbhost string `form:"dbhost" json:"dbhost" binding:"required"`
-	Dbuser string
-	Dbpwd string
-	Dbtype string
+	Dbuser string `json:"dbuser"`
+	Dbpwd string `json:"dbpwd"`
+	Dbtype string `json:"dbtype"`
+	User_have bool `json:"user_have"`
+	User_id int `json:"user_id"`
 }
 
 type Change_user struct {
@@ -68,15 +72,21 @@ type Userdbsql struct {
 }
 
 
+
 var engine *xorm.Engine
 
 func InitDB() (*xorm.Engine,error){
 
 	var err error
 	db,err := xorm.NewEngine("mysql", "root:passwd@/test")
+	//db.ShowSQL(true)
+	//err = db.Sync2(new(Myweb_user))
 	engine=db
 	return engine,err
 }
+
+
+
 
 func Sysuser(c *gin.Context) {
 	c.HTML(http.StatusOK, "views/sysuser.html",nil)
@@ -247,45 +257,48 @@ func Vuesysuserdb(c *gin.Context)  {
 func Vuesysuserdbjson(c *gin.Context)  {
 	var json Userdbsql
 	c.ShouldBindJSON(&json)
-	println(json.User_id)
+	//println(json.User_id)
 
-	var userdball []Userdball
+	//var userdball []Userdball
 	var alluser_dbconfig []Db_config
 
-	sql_sel_all_user:="select * from sys_userdb"
-	engine.Sql(sql_sel_all_user).Find(&userdball)
-	userdballs:=make([]Userdball,0)
-	for _,vuserdball :=range userdball{
-		vuserdball.User_have=false
-		sql_sel_all_db:="select * from db_config where id ="+fmt.Sprint(vuserdball.Db_id)
-		engine.Sql(sql_sel_all_db).Find(&alluser_dbconfig)
+	//sql_sel_all_user:="select * from db_config"
+	//engine.Sql(sql_sel_all_user).Find(&userdball)
 
-		for _,vdb :=range alluser_dbconfig{
-			vuserdball.Db_name=vdb.Dbname
-			vuserdball.Db_host=vdb.Dbhost
-		}
-		//vuserdba, _ := json.Marshal(vuserdb)
-		userdballs=append(userdballs,vuserdball)
+	sql_sel_all_db:="select * from db_config"
+	engine.Sql(sql_sel_all_db).Find(&alluser_dbconfig)
+	//userdballs:=make([]Db_config,0)
+	for _,vdb :=range alluser_dbconfig{
+		vdb.User_id=json.User_id
+		vdb.User_have=false
+		//userdballs=append(userdballs,vdb)
 	}
-	println(userdballs[0].Db_id,userdballs[0].Db_name)
+	//vuserdba, _ := json.Marshal(vuserdb)
+
+	//for _,vuserdball :=range userdball{
+	//	vuserdball.User_have=false
+
+	//}
+	//println(userdballs[0].Db_id,userdballs[0].Db_name)
 	var userdb []Userdb
 	//var user_dbconfig []Db_config
 
 	sql_sel_user:="select * from sys_userdb where user_id ="+fmt.Sprint(json.User_id)
 	engine.Sql(sql_sel_user).Find(&userdb)
 	for _,vuserdb :=range userdb{
-	for _,alluserdb:=range userdballs{
-		if alluserdb.Db_id==vuserdb.Db_id{
-			println(vuserdb.Db_id)
-			alluserdb.User_have=true
-			}else {
-		continue
+		for k,_:=range alluser_dbconfig{
+			if k==vuserdb.Db_id{
+				alluser_dbconfig[vuserdb.Db_id-1].User_have=true
+				println(vuserdb.Db_id)
+			}
 		}
-	}
+		//println(vuserdb.Db_id-1)
+		//userdballs[vuserdb.Db_id].User_have=true
+
 	}
 
 
 	//userdb :=[{ user_id:467, db_id: 1,db_name:"finance_car_lease_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },]
-	c.JSON(http.StatusOK, userdballs)
+	c.JSON(http.StatusOK, alluser_dbconfig)
 
 }

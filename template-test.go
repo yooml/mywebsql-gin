@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"mywebsql-gin/controllers"
 	"github.com/gin-gonic/gin/render"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/dgrijalva/jwt-go/request"
 )
 
 type StructA struct {
@@ -17,6 +19,7 @@ type MyHTMLRender struct {
 }
 
 func main() {
+	//gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.LoadHTMLGlob("views/*")
 //router.LoadHTMLGlob("views/*.html")
@@ -28,6 +31,16 @@ func main() {
 	defer db.Close()
 	router.Static("/static", "./static")
 //router.LoadHTMLGlob("views/*.html")
+	router.GET("/register", controllers.Register)
+	router.POST("/login", controllers.Login)
+	router.GET("/login", controllers.Login)
+	authorized := router.Group("/user", MyMiddelware())
+	authorized.POST("/info", func(c *gin.Context) {
+		c.String(http.StatusOK, "info")
+	})
+	authorized.GET("/info", func(c *gin.Context) {
+		c.String(http.StatusOK, "info")
+	})
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/sysuser.html",nil)
 	})
@@ -49,7 +62,8 @@ func main() {
 			"a":"ll",
 		})
 	})
-	router.GET("/test3",func(c *gin.Context) {
+
+	authorized.GET("/vuesysuser",func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/vuesysuser.html",nil)
 		})
 	router.GET("/test4",func(c *gin.Context) {
@@ -63,6 +77,8 @@ func main() {
 			"a":"ll",
 		})
 	})
+
+
 
 	router.POST("/testsql",controllers.Testsql)
 	router.Run(":8080")
@@ -90,3 +106,22 @@ func createMyRender() render.HTMLRender {
 
 	return r
 }
+
+func MyMiddelware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token, err := request.ParseFromRequest(c.Request, request.AuthorizationHeaderExtractor,
+			func(token *jwt.Token) (interface{}, error) {
+				return []byte("mobile"), nil
+			})
+		if err == nil {
+			if token.Valid {
+				c.Next()
+			} else {
+				c.String(http.StatusUnauthorized, "Token is not valid")
+			}
+		} else {
+			c.String(http.StatusUnauthorized, "Unauthorized access to this resource")
+		}
+	}
+}
+

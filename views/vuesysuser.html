@@ -45,6 +45,7 @@
 </head>
 
 <body>
+{{template "header"}}
 <div id="audit">
     <div class="filter">
         <div class="ui input icon">
@@ -95,9 +96,12 @@
             <tfoot class="full-width">
             <tr>
                 <th colspan="4">
+                    <button class="ui button left labeled icon" @click="turnPage(-1)">
+                        <i class="left arrow icon"></i> 上一页
+                    </button>
                     <span>共<span v-html="totalPage"></span> 页，当前第<span v-html="currentPage+1"></span> 页</span>
                     <button class="ui button right labeled icon" @click="turnPage(1)">
-                        <i class="right arrow icon"></i> Next
+                        <i class="right arrow icon"></i> 下一页
                     </button>
                     <div class="jtp">
                         <span>跳转到第 </span>
