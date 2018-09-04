@@ -16,7 +16,7 @@ type MyHTMLRender struct {
 }
 
 func main() {
-	//gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.LoadHTMLGlob("views/*")
 //router.LoadHTMLGlob("views/*.html")
