@@ -9,9 +9,6 @@ import (
 	"github.com/dgrijalva/jwt-go/request"
 )
 
-type StructA struct {
-	FieldA string `form:"field_a"`
-}
 
 
 type MyHTMLRender struct {
@@ -33,7 +30,12 @@ func main() {
 //router.LoadHTMLGlob("views/*.html")
 	router.GET("/register", controllers.Register)
 	router.POST("/login", controllers.Login)
-	router.GET("/login", controllers.Login)
+	router.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "views/vuelogin.html", nil)
+	})
+	router.GET("/logout",  func(c *gin.Context) {
+		c.HTML(http.StatusOK, "views/vuelogout.html",nil)
+	})
 	authorized := router.Group("/user", MyMiddelware())
 	authorized.POST("/info", func(c *gin.Context) {
 		c.String(http.StatusOK, "info")
@@ -63,24 +65,19 @@ func main() {
 		})
 	})
 
-	authorized.GET("/vuesysuser",func(c *gin.Context) {
+	router.GET("/vuesysuser",func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/vuesysuser.html",nil)
 		})
 	router.GET("/test4",func(c *gin.Context) {
-		/*ll:=`[
-		{ user_id:467, db_id: 1,db_name:"_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
-		{ user_id:467, db_id: 2,db_name:"lease",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
-		{ user_id:467, db_id: 3,db_name:"finance_car",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
-		{ user_id:467, db_id: 4,db_name:"finance",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },
-	]`*/
-		c.HTML(http.StatusOK, "views/testvue3.html",gin.H{
-			"a":"ll",
-		})
+		c.HTML(http.StatusOK, "views/vuelogin.html", nil)
 	})
 
 
 
 	router.POST("/testsql",controllers.Testsql)
+	router.GET("/download",func(c *gin.Context) {
+		c.HTML(http.StatusOK, "views/download.html", nil)
+	})
 	router.Run(":8080")
 }
 

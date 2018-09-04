@@ -85,10 +85,8 @@
                 <td><span v-html="user.user_name"></span></td>
                 <td>
                    
-                    <button class="ui button red" name="test" value="user.user_name" @click="set(user)">测试</button>
+                    <button class="ui button red" name="test" value="user.user_name" @click="set(user)">操作</button>
 
-                    <button class="ui button red"  @click="func()">test2</button>
-                    <a href="/views/testvue3.html">跳转</a>
                     <button class="ui button red" v-if="user.user_have==false" @click="setuserhave(user,true)">添加</button>
                     <button class="ui button green" v-if="user.user_have==true" @click="setuserhave(user,false)">删除</button>
                 </td>
@@ -168,11 +166,25 @@
         },
         mounted: function () {
 
-                axios.post('/vuesysuser')
-                    .then((res)=>{
-                        this.userdb = res.data;
-                    })
-                //console.log(this.userdb)
+
+                console.log(localStorage.token)
+
+                    if (localStorage.token==="q"||localStorage.token===false) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+
+                        alert("用户名或密码错误", 'fail')
+                        location.href = "/login";
+                    }else {
+
+
+                            //alert("错误的传参", 'fail')
+                            //return Promise.reject(error)
+                        axios.post('/vuesysuser')
+                            .then((res)=>{
+                                this.userdb = res.data;
+                            })
+                    }
+
+
 
                 axios.post('/vuesysuser')
                     .then(function(res){

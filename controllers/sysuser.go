@@ -227,9 +227,13 @@ func SelectDb(c *gin.Context)  {
 func Testsql(c *gin.Context)  {
 	var json Userdbsql
 	if err := c.ShouldBindJSON(&json); err == nil {
-		if json.User_have == true{
+		if json.User_have == false{
+			sql_in := "insert into sys_userdb (user_id,db_id,end_datetime) values("+fmt.Sprint(json.User_id)+","+fmt.Sprint(json.Db_id)+",'2018-09-01 00:00:00')"
+			engine.Exec(sql_in)
 			c.JSON(http.StatusOK, gin.H{"status": "you are logged in","user_id":json.User_id,"db_id":json.Db_id})
 		} else {
+			sql_del := "delete from sys_userdb where user_id="+fmt.Sprint(json.User_id)+" and db_id="+fmt.Sprint(json.Db_id)
+			engine.Exec(sql_del)
 			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
 		}
 	} else {
@@ -257,14 +261,7 @@ func Vuesysuserdb(c *gin.Context)  {
 func Vuesysuserdbjson(c *gin.Context)  {
 	var json Userdbsql
 	c.ShouldBindJSON(&json)
-	//println(json.User_id)
-
-	//var userdball []Userdball
 	var alluser_dbconfig []Db_config
-
-	//sql_sel_all_user:="select * from db_config"
-	//engine.Sql(sql_sel_all_user).Find(&userdball)
-
 	sql_sel_all_db:="select * from db_config"
 	engine.Sql(sql_sel_all_db).Find(&alluser_dbconfig)
 	//userdballs:=make([]Db_config,0)
@@ -273,16 +270,8 @@ func Vuesysuserdbjson(c *gin.Context)  {
 		vdb.User_have=false
 		//userdballs=append(userdballs,vdb)
 	}
-	//vuserdba, _ := json.Marshal(vuserdb)
 
-	//for _,vuserdball :=range userdball{
-	//	vuserdball.User_have=false
-
-	//}
-	//println(userdballs[0].Db_id,userdballs[0].Db_name)
 	var userdb []Userdb
-	//var user_dbconfig []Db_config
-
 	sql_sel_user:="select * from sys_userdb where user_id ="+fmt.Sprint(json.User_id)
 	engine.Sql(sql_sel_user).Find(&userdb)
 	for _,vuserdb :=range userdb{
@@ -292,12 +281,7 @@ func Vuesysuserdbjson(c *gin.Context)  {
 				println(vuserdb.Db_id)
 			}
 		}
-		//println(vuserdb.Db_id-1)
-		//userdballs[vuserdb.Db_id].User_have=true
-
 	}
-
-
 	//userdb :=[{ user_id:467, db_id: 1,db_name:"finance_car_lease_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },]
 	c.JSON(http.StatusOK, alluser_dbconfig)
 

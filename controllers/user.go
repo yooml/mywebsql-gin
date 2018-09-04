@@ -34,11 +34,13 @@ func (c *Myweb_user) Register() string {
 }
 func (c *Myweb_user) Login() string {
 	has, _ := engine.Get(c)
+	a:="q"
 	if has {
 		//println(&v)
-		return JsonResponse(0, setToken())
+		//return JsonResponse(0, setToken())
+		return setToken()
 	} else {
-		return JsonResponse(1, "登录失败")
+		return a
 	}
 }
 func setToken() string {
@@ -64,12 +66,15 @@ func Register(c *gin.Context) {
 	c.String(http.StatusOK, user.Register())
 }
 func Login(c *gin.Context) {
-	username := c.Query("username")
-	password := c.Query("password")
+	username := c.PostForm("username")
+	password := c.PostForm("password")
+	println(password)
 	user := Myweb_user{
 		Username: username,
 		Password: password,
 	}
+
+
 	c.String(http.StatusOK, user.Login())
 }
 

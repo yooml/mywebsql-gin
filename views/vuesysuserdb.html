@@ -175,14 +175,21 @@
             }
         },
         mounted: function () {
-            axios.post('/vuesysuserdb',{
-                user_id: user_id,
+            console.log(localStorage.token)
 
-            })
-                .then((res)=>{
-                    this.userdb = res.data;
+            if (localStorage.token==="q"||localStorage.token===false) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+
+                alert("用户名或密码错误", 'fail')
+                location.href = "/login";
+            }else {
+                axios.post('/vuesysuserdb', {
+                    user_id: user_id,
+
                 })
-
+                    .then((res) => {
+                        this.userdb = res.data;
+                    })
+            }
         },
         // watch
         watch: {
@@ -264,7 +271,7 @@
                 //user = this.selectedUser
                 //user.user_have = userhave
                 axios.post('/testsql',{
-                    user_id : user.user_id,
+                    user_id : user_id,
                     db_id : user.dbid,
                     user_have : user.user_have,
                 })
