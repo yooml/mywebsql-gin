@@ -36,10 +36,11 @@ func (c *Myweb_user) Login() string {
 	has, _ := engine.Get(c)
 	a:="q"
 	if has {
-		//println(&v)
+		println("success")
 		//return JsonResponse(0, setToken())
 		return setToken()
 	} else {
+		println(a)
 		return a
 	}
 }
