@@ -16,8 +16,8 @@ import (
 )
 
 type Myweb_user struct {
-	//Id        int       `xorm:"pk autoincr"`
-	Username  string    `xorm:"index unique notnull"`
+	Id        int       `xorm:"pk autoincr"`
+	Username  string    `xorm:"username"`
 	Password  string    `xorm:"password"`
 	//CreatedAt time.Time `xorm:"created"`
 }
@@ -68,7 +68,7 @@ func Register(c *gin.Context) {
 func Login(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
-	println(password)
+	println(password,username)
 	user := Myweb_user{
 		Username: username,
 		Password: password,
