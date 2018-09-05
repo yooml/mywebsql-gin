@@ -43,18 +43,23 @@ func main() {
 	authorized.GET("/info", func(c *gin.Context) {
 		c.String(http.StatusOK, "info")
 	})
-	router.GET("/", controllers.Login)
-	router.POST("/addsysuser", controllers.AddSysuser)
+	router.GET("/",func(c *gin.Context) {
+                c.HTML(http.StatusOK, "views/vuelogin.html", nil)
+        })
+	/*router.POST("/addsysuser", controllers.AddSysuser)
 	router.POST("/selectsysuser", controllers.SelectSysuser)
 	router.POST("/selectdb", controllers.SelectDb)
 	router.GET("/sysuser",controllers.Sysuser)
 	router.POST("/sysuserdb",controllers.Sysuserdb)
-	router.GET("/sysuserdb",controllers.Sysuserdb)
+	router.GET("/sysuserdb",controllers.Sysuserdb)*/
 	router.POST("/vuesysuser",controllers.Vuesysuser)
 	router.GET("/vuesysuserdb",controllers.Vuesysuserdb)
 	router.POST("/vuesysuserdb",controllers.Vuesysuserdbjson)
+        router.GET("/vuesysuser",func(c *gin.Context) {
+                c.HTML(http.StatusOK, "views/vuesysuser.html",nil)
+                })
 
-	router.GET("/test",func(c *gin.Context) {
+/*	router.GET("/test",func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/testvuerouter.html",nil)
 	})
 	router.GET("/test2",func(c *gin.Context) {
@@ -63,19 +68,13 @@ func main() {
 		})
 	})
 
-	router.GET("/vuesysuser",func(c *gin.Context) {
-		c.HTML(http.StatusOK, "views/vuesysuser.html",nil)
-		})
 	router.GET("/test4",func(c *gin.Context) {
 		c.HTML(http.StatusOK, "views/vuelogin.html", nil)
-	})
+	})*/
 
 
 
 	router.POST("/testsql",controllers.Testsql)
-	router.GET("/download",func(c *gin.Context) {
-		c.HTML(http.StatusOK, "views/download.html", nil)
-	})
 	router.Run(":8080")
 }
 
