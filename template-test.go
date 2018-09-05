@@ -43,9 +43,7 @@ func main() {
 	authorized.GET("/info", func(c *gin.Context) {
 		c.String(http.StatusOK, "info")
 	})
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "views/sysuser.html",nil)
-	})
+	router.GET("/", controllers.Login)
 	router.POST("/addsysuser", controllers.AddSysuser)
 	router.POST("/selectsysuser", controllers.SelectSysuser)
 	router.POST("/selectdb", controllers.SelectDb)

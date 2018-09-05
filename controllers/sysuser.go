@@ -78,7 +78,7 @@ var engine *xorm.Engine
 func InitDB() (*xorm.Engine,error){
 
 	var err error
-	db,err := xorm.NewEngine("mysql", "root:root@/mysqlweb")
+	db,err := xorm.NewEngine("mysql", "root:pwd@tcp(ip:3306)/mysqlweb?charset=utf8")
 	db.ShowSQL(true)
 	err = db.Sync2(new(Myweb_user))
 	engine=db
@@ -232,7 +232,7 @@ func Testsql(c *gin.Context)  {
 	var json Userdbsql
 	if err := c.ShouldBindJSON(&json); err == nil {
 		if json.User_have == false{
-			sql_in := "insert into sys_userdb (user_id,db_id,end_datetime) values("+fmt.Sprint(json.User_id)+","+fmt.Sprint(json.Db_id)+",'2018-09-01 00:00:00')"
+			sql_in := "insert into sys_userdb (user_id,db_id,end_datetime) values("+fmt.Sprint(json.User_id)+","+fmt.Sprint(json.Db_id)+",'2018-10-01 00:00:00')"
 			engine.Exec(sql_in)
 			c.JSON(http.StatusOK, gin.H{"status": "you are logged in","user_id":json.User_id,"db_id":json.Db_id})
 		} else {
