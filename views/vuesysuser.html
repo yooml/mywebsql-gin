@@ -181,21 +181,13 @@
                         axios.post('/vuesysuser')
                             .then((res)=>{
                                 this.userdb = res.data;
+                                console.log(this.userdb)
                             })
                     }
 
 
 
-                axios.post('/vuesysuser')
-                    .then(function(res){
-                        //console.log(res.data);
-                        //console.log(res.status);
-                        //console.log(res.statusText);
-                        //console.log(res.headers);
-                        //console.log(res.config);
-                        this.userdb = res.data;
-                    })
-                console.log(this.userdb)
+
         },
         // watch
         watch: {

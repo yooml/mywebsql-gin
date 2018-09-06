@@ -78,11 +78,8 @@ var engine *xorm.Engine
 func InitDB() (*xorm.Engine,error){
 
 	var err error
-<<<<<<< HEAD
 	db,err := xorm.NewEngine("mysql", "root:pwd@tcp(ip:3306)/mysqlweb?charset=utf8")
-=======
-	db,err := xorm.NewEngine("mysql", "root:root@tcp(10.47.49.77:3306)/mysqlweb?charset=utf8")
->>>>>>> fd39d33a324728f3096ebb2b4f573e4757b321ab
+
 	db.ShowSQL(true)
 	err = db.Sync2(new(Myweb_user))
 	engine=db
@@ -273,23 +270,22 @@ func Vuesysuserdbjson(c *gin.Context)  {
 	sql_sel_all_db:="select * from db_config"
 	engine.Sql(sql_sel_all_db).Find(&alluser_dbconfig)
 	//userdballs:=make([]Db_config,0)
-	for _,vdb :=range alluser_dbconfig{
-		vdb.User_id=json.User_id
-		vdb.User_have=false
-		//userdballs=append(userdballs,vdb)
-	}
+
 
 	var userdb []Userdb
 	sql_sel_user:="select * from sys_userdb where user_id ="+fmt.Sprint(json.User_id)
 	engine.Sql(sql_sel_user).Find(&userdb)
-	for _,vuserdb :=range userdb{
-		for k,_:=range alluser_dbconfig{
-			if k==vuserdb.Db_id{
-				alluser_dbconfig[vuserdb.Db_id-1].User_have=true
-				println(vuserdb.Db_id)
+	for k,vdb :=range alluser_dbconfig{
+		vdb.User_id=json.User_id
+		vdb.User_have=false
+		//userdballs=append(userdballs,vdb)
+		for _,vuserdb :=range userdb{
+			if vdb.Id==vuserdb.Db_id{
+				alluser_dbconfig[k].User_have=true
 			}
 		}
 	}
+
 	//userdb :=[{ user_id:467, db_id: 1,db_name:"finance_car_lease_v3",db_host:"bp184d696xe285rmlrw.mysql.rds.aliyuncs.com", user_have: true },]
 	c.JSON(http.StatusOK, alluser_dbconfig)
 
