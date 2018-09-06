@@ -78,7 +78,11 @@ var engine *xorm.Engine
 func InitDB() (*xorm.Engine,error){
 
 	var err error
+<<<<<<< HEAD
 	db,err := xorm.NewEngine("mysql", "root:pwd@tcp(ip:3306)/mysqlweb?charset=utf8")
+=======
+	db,err := xorm.NewEngine("mysql", "root:root@tcp(10.47.49.77:3306)/mysqlweb?charset=utf8")
+>>>>>>> fd39d33a324728f3096ebb2b4f573e4757b321ab
 	db.ShowSQL(true)
 	err = db.Sync2(new(Myweb_user))
 	engine=db

@@ -1,0 +1,186 @@
+[GIN] 2018/09/04 - 20:50:35 | 200 |     361.708µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 20:50:35 | 304 |     155.341µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.css
+[GIN] 2018/09/04 - 20:50:35 | 304 |      44.657µs | 122.224.174.110 | GET      /static/js/jquery-3.3.1.min.js
+[GIN] 2018/09/04 - 20:50:35 | 304 |      46.897µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.js
+[GIN] 2018/09/04 - 20:50:35 | 304 |      44.086µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.js
+[GIN] 2018/09/04 - 20:50:35 | 304 |     127.254µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/themes/default/assets/fonts/icons.woff2
+aaaaaa
+[GIN] 2018/09/04 - 20:51:02 | 200 |     348.717µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/04 - 20:51:02 | 200 |     699.963µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/04 - 20:51:02 | 304 |     126.333µs | 122.224.174.110 | GET      /static/js/vue-2.5.17/vue.js
+[GIN] 2018/09/04 - 20:51:02 | 304 |      80.965µs | 122.224.174.110 | GET      /static/node_modules/vue-router/dist/vue-router.js
+[GIN] 2018/09/04 - 20:51:02 | 304 |      69.755µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/jquery-ui.css
+[GIN] 2018/09/04 - 20:51:02 | 304 |      47.474µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css
+[GIN] 2018/09/04 - 20:51:04 | 200 |     473.311µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/04 - 20:51:04 | 200 |      62.054µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 20:59:22 | 200 |      97.412µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 20:59:22 | 304 |     115.839µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.css
+[GIN] 2018/09/04 - 20:59:22 | 304 |      48.394µs | 122.224.174.110 | GET      /static/js/jquery-3.3.1.min.js
+[GIN] 2018/09/04 - 20:59:22 | 304 |      59.329µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.js
+[GIN] 2018/09/04 - 20:59:22 | 304 |      73.101µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.js
+[GIN] 2018/09/04 - 20:59:22 | 304 |       99.02µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/themes/default/assets/fonts/icons.woff2
+123456
+[GIN] 2018/09/04 - 20:59:26 | 200 |     431.542µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/04 - 20:59:26 | 200 |     177.955µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/04 - 20:59:26 | 304 |     118.744µs | 122.224.174.110 | GET      /static/js/vue-2.5.17/vue.js
+[GIN] 2018/09/04 - 20:59:26 | 304 |       42.72µs | 122.224.174.110 | GET      /static/node_modules/vue-router/dist/vue-router.js
+[GIN] 2018/09/04 - 20:59:26 | 304 |      89.942µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/jquery-ui.css
+[GIN] 2018/09/04 - 20:59:26 | 304 |      84.836µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css
+[GIN] 2018/09/04 - 20:59:53 | 200 |     141.394µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 20:59:53 | 200 |     319.859µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/04 - 20:59:53 | 200 |     141.109µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 20:59:54 | 200 |   17.961718ms | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css.map
+[GIN] 2018/09/04 - 20:59:54 | 200 |     313.398µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.map
+123456
+[GIN] 2018/09/04 - 21:00:00 | 200 |     333.816µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/04 - 21:00:00 | 200 |     159.316µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/04 - 21:00:07 | 200 |     323.814µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/04 - 21:00:07 | 200 |       89.13µs | 122.224.174.110 | GET      /login
+123456
+[GIN] 2018/09/04 - 21:00:21 | 200 |     762.198µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/04 - 21:00:21 | 200 |     305.839µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/04 - 21:00:24 | 200 |     510.252µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/04 - 21:00:24 | 200 |      80.627µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 21:06:51 | 200 |     588.198µs | 122.224.174.110 | GET      /
+[GIN] 2018/09/04 - 21:06:51 | 304 |      92.488µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/jquery-ui.css
+[GIN] 2018/09/04 - 21:06:51 | 304 |      47.183µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css
+[GIN] 2018/09/04 - 21:06:51 | 304 |     130.657µs | 122.224.174.110 | GET      /static/js/vue-2.5.17/vue.js
+[GIN] 2018/09/04 - 21:06:51 | 200 |     157.277µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/js/bootstrap.min.js
+[GIN] 2018/09/04 - 21:06:51 | 304 |      83.412µs | 122.224.174.110 | GET      /static/js/jquery-3.3.1.min.js
+[GIN] 2018/09/04 - 21:06:51 | 200 |   11.955183ms | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/ui/jquery-ui.js
+[GIN] 2018/09/04 - 21:06:51 | 304 |        92.3µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css.map
+[GIN] 2018/09/04 - 21:06:51 | 200 |     233.784µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png
+[GIN] 2018/09/04 - 21:06:57 | 404 |       1.466µs | 122.224.174.110 | GET      /test3
+[GIN] 2018/09/04 - 21:07:00 | 200 |     108.971µs | 122.224.174.110 | GET      /test4
+[GIN] 2018/09/04 - 21:07:00 | 304 |     139.881µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.css
+[GIN] 2018/09/04 - 21:07:00 | 304 |        79.9µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.js
+[GIN] 2018/09/04 - 21:07:00 | 304 |      54.826µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.js
+[GIN] 2018/09/04 - 21:07:01 | 304 |      96.378µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/themes/default/assets/fonts/icons.woff2
+[GIN] 2018/09/04 - 21:07:01 | 304 |     111.492µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.map
+[GIN] 2018/09/04 - 21:07:03 | 200 |     354.864µs | 122.224.174.110 | GET      /test2
+[GIN] 2018/09/04 - 21:07:07 | 200 |     284.109µs | 122.224.174.110 | GET      /test
+[GIN] 2018/09/04 - 21:07:08 | 304 |     142.837µs | 122.224.174.110 | GET      /static/node_modules/vue-router/dist/vue-router.js
+[GIN] 2018/09/04 - 21:07:12 | 200 |     130.204µs | 122.224.174.110 | GET      /
+[GIN] 2018/09/04 - 21:07:14 | 200 |      186.79µs | 122.224.174.110 | GET      /logout
+[GIN] 2018/09/04 - 21:07:14 | 200 |     129.637µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/04 - 21:08:15 | 200 |     117.394µs | 122.224.174.110 | GET      /login
+zxcvbn
+[GIN] 2018/09/04 - 21:08:22 | 200 |     375.563µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/04 - 21:08:22 | 200 |     142.339µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/04 - 21:08:27 | 200 |     419.027µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/04 - 21:08:27 | 200 |      142.24µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/05 - 09:44:52 | 200 |     141.691µs | 122.224.174.110 | GET      /
+[GIN] 2018/09/05 - 09:44:52 | 304 |     121.154µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/jquery-ui.css
+[GIN] 2018/09/05 - 09:44:52 | 304 |      69.956µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css
+[GIN] 2018/09/05 - 09:44:52 | 304 |      88.597µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/js/bootstrap.min.js
+[GIN] 2018/09/05 - 09:44:52 | 304 |      40.694µs | 122.224.174.110 | GET      /static/js/jquery-3.3.1.min.js
+[GIN] 2018/09/05 - 09:44:52 | 304 |      51.001µs | 122.224.174.110 | GET      /static/js/vue-2.5.17/vue.js
+[GIN] 2018/09/05 - 09:44:52 | 304 |     102.195µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/ui/jquery-ui.js
+[GIN] 2018/09/05 - 09:44:52 | 304 |     101.572µs | 122.224.174.110 | GET      /static/js/jquery-ui-1.10.4/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png
+[GIN] 2018/09/05 - 09:44:52 | 404 |       1.371µs | 122.224.174.110 | GET      /favicon.ico
+[GIN] 2018/09/05 - 09:45:01 | 200 |      96.253µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/05 - 09:45:01 | 304 |     114.227µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.css
+[GIN] 2018/09/05 - 09:45:01 | 304 |      98.906µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/semantic.js
+[GIN] 2018/09/05 - 09:45:01 | 304 |      44.052µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.js
+[GIN] 2018/09/05 - 09:45:01 | 304 |     129.494µs | 122.224.174.110 | GET      /static/Semantic-UI-2.2.6/themes/default/assets/fonts/icons.woff2
+zxcvbn
+[GIN] 2018/09/05 - 09:45:36 | 200 |     534.499µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/05 - 09:45:36 | 200 |     210.073µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/05 - 09:45:36 | 304 |      161.49µs | 122.224.174.110 | GET      /static/node_modules/vue-router/dist/vue-router.js
+[GIN] 2018/09/05 - 09:45:38 | 200 |     545.066µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/05 - 09:45:38 | 200 |     104.718µs | 122.224.174.110 | GET      /login
+[GIN] 2018/09/05 - 10:17:09 | 200 |     613.537µs | 122.224.174.110 | GET      /
+[GIN] 2018/09/05 - 10:17:13 | 200 |     637.327µs | 122.224.174.110 | GET      /login
+123456
+[GIN] 2018/09/05 - 10:17:19 | 200 |     489.786µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/05 - 10:17:19 | 200 |     487.388µs | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/05 - 10:17:21 | 200 |     468.155µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/05 - 10:17:21 | 200 |     119.337µs | 122.224.174.110 | GET      /login
+[GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
+
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] Loaded HTML Templates (29): 
+	- views/vuesysuser.html
+	- vuesysuserdb.html
+	- views/sysuserdb.html
+	- views/testvue2.html
+	- views/testvue3.html
+	- views/vuelogin.html
+	- vuelogout.html
+	- index.html
+	- testvue.html
+	- views/testvue.html
+	- views/vuesysuserdb.html
+	- views/sysuser.html
+	- testvue2.html
+	- 24.html
+	- views/testvuerouter.html
+	- views/download.html
+	- mywebsql-base.html
+	- header
+	- testvuerouter.html
+	- js
+	- vuesysuser.html
+	- index.tmpl
+	- sysuser.html
+	- sysuserdb.html
+	- testvue3.html
+	- 
+	- download.html
+	- vuelogin.html
+	- views/vuelogout.html
+
+[xorm] [info]  2018/09/05 10:45:26.524193 [SQL] SELECT `TABLE_NAME`, `ENGINE`, `TABLE_ROWS`, `AUTO_INCREMENT`, `TABLE_COMMENT` from `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA`=? AND (`ENGINE`='MyISAM' OR `ENGINE` = 'InnoDB' OR `ENGINE` = 'TokuDB') [mysqlweb]
+[xorm] [info]  2018/09/05 10:45:26.524425 PING DATABASE mysql
+dial tcp 127.0.0.1:3306: connect: connection refused
+[GIN-debug] GET    /static/*filepath         --> mywebsql-gin/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /static/*filepath         --> mywebsql-gin/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] GET    /register                 --> mywebsql-gin/controllers.Register (3 handlers)
+[GIN-debug] POST   /login                    --> mywebsql-gin/controllers.Login (3 handlers)
+[GIN-debug] GET    /login                    --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /logout                   --> main.main.func2 (3 handlers)
+[GIN-debug] POST   /user/info                --> main.main.func3 (4 handlers)
+[GIN-debug] GET    /user/info                --> main.main.func4 (4 handlers)
+[GIN-debug] GET    /                         --> main.main.func5 (3 handlers)
+[GIN-debug] POST   /addsysuser               --> mywebsql-gin/controllers.AddSysuser (3 handlers)
+[GIN-debug] POST   /selectsysuser            --> mywebsql-gin/controllers.SelectSysuser (3 handlers)
+[GIN-debug] POST   /selectdb                 --> mywebsql-gin/controllers.SelectDb (3 handlers)
+[GIN-debug] GET    /sysuser                  --> mywebsql-gin/controllers.Sysuser (3 handlers)
+[GIN-debug] POST   /sysuserdb                --> mywebsql-gin/controllers.Sysuserdb (3 handlers)
+[GIN-debug] GET    /sysuserdb                --> mywebsql-gin/controllers.Sysuserdb (3 handlers)
+[GIN-debug] POST   /vuesysuser               --> mywebsql-gin/controllers.Vuesysuser (3 handlers)
+[GIN-debug] GET    /vuesysuserdb             --> mywebsql-gin/controllers.Vuesysuserdb (3 handlers)
+[GIN-debug] POST   /vuesysuserdb             --> mywebsql-gin/controllers.Vuesysuserdbjson (3 handlers)
+[GIN-debug] GET    /test                     --> main.main.func6 (3 handlers)
+[GIN-debug] GET    /test2                    --> main.main.func7 (3 handlers)
+[GIN-debug] GET    /vuesysuser               --> main.main.func8 (3 handlers)
+[GIN-debug] GET    /test4                    --> main.main.func9 (3 handlers)
+[GIN-debug] POST   /testsql                  --> mywebsql-gin/controllers.Testsql (3 handlers)
+[GIN-debug] GET    /download                 --> main.main.func10 (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2018/09/05 - 10:45:36 | 200 |    2.513521ms | 122.224.174.110 | GET      /
+[GIN] 2018/09/05 - 10:45:42 | 200 |    1.470206ms | 122.224.174.110 | GET      /login
+[GIN] 2018/09/05 - 10:45:47 | 304 |     151.564µs | 122.224.174.110 | GET      /static/node_modules/axios/dist/axios.map
+123456 admin
+[xorm] [info]  2018/09/05 10:45:57.964274 [SQL] SELECT `id`, `username`, `password` FROM `myweb_user` WHERE `username`=? AND `password`=? LIMIT 1 []interface {}{"admin", "123456"}
+[GIN] 2018/09/05 - 10:45:57 | 200 |     397.574µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/05 - 10:45:57 | 200 |    2.768236ms | 122.224.174.110 | GET      /vuesysuser
+[GIN] 2018/09/05 - 10:45:58 | 304 |     122.879µs | 122.224.174.110 | GET      /static/bootstrap-3.3.7-dist/css/bootstrap.min.css.map
+[xorm] [info]  2018/09/05 10:46:00.160823 [SQL] select * from sys_user
+[GIN] 2018/09/05 - 10:46:00 | 200 |     457.705µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/05 - 10:46:00 | 200 |    1.226503ms | 122.224.174.110 | GET      /login
+123456 yml
+[xorm] [info]  2018/09/05 10:52:17.850317 [SQL] SELECT `id`, `username`, `password` FROM `myweb_user` WHERE `username`=? AND `password`=? LIMIT 1 []interface {}{"yml", "123456"}
+[GIN] 2018/09/05 - 10:52:17 | 200 |     411.914µs | 122.224.174.110 | POST     /login
+[GIN] 2018/09/05 - 10:52:17 | 200 |    2.332387ms | 122.224.174.110 | GET      /vuesysuser
+[xorm] [info]  2018/09/05 10:52:19.717948 [SQL] select * from sys_user
+[GIN] 2018/09/05 - 10:52:19 | 200 |      393.38µs | 122.224.174.110 | POST     /vuesysuser
+[GIN] 2018/09/05 - 10:52:19 | 200 |    1.806237ms | 122.224.174.110 | GET      /login
+[xorm] [info]  2018/09/05 10:53:28.093284 [SQL] INSERT INTO `myweb_user` (`username`,`password`) VALUES (?, ?) []interface {}{"yml", "abc123"}
+[xorm] [info]  2018/09/05 10:53:28.093645 [SQL] SELECT `id`, `username`, `password` FROM `myweb_user` WHERE `username`=? AND `password`=? LIMIT 1 []interface {}{"yml", "abc123"}
+[GIN] 2018/09/05 - 10:53:28 | 200 |     746.824µs | 122.224.174.110 | GET      /register?username=yml&password=abc123
